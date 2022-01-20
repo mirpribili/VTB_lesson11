@@ -7,8 +7,10 @@ import java.security.SecureRandom;
 @Entity
 @Table(name = "books_readers")
 public class Review {
+    
+    
     @Embeddable
-    public static class Id implements Serializable {
+    public static class Id implements Serializable { //  от каких столбцов зависит этот ID
         @Column(name = "reader_id")
         int readerId;
 
@@ -30,7 +32,7 @@ public class Review {
         }
     }
 
-    @EmbeddedId
+    @ 
     Id id;
 
     @ManyToOne
