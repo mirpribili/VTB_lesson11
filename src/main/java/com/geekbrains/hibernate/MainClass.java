@@ -15,7 +15,13 @@ local   all         postgres                          ident
  * \dt
  * \d catalogs
  * FIXME: CREATE TABLE catalogs (id serial, title varchar);
- *
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Связи между объектами
+ *  @OneToOne
+ *  @ManyToOne  - см class Book (много книг может ссылаться на 1 автора\писателя)
+ *      как книга узнает кто ее написал?
+ *  @OneToMany
+ *  @ManyToMany
  */
 
 public class MainClass {
@@ -36,7 +42,7 @@ public class MainClass {
 //            Author author = new Author();
 //            author.setName("Rowling");
 //            session.beginTransaction();
-//            session.save(author);
+//            session.save(author); // связать с таблицей
 //            session.getTransaction().commit();
 
             /*
@@ -50,11 +56,11 @@ public class MainClass {
             //*/
 
 //            CREATE
-            session = factory.getCurrentSession();
-            Catalog catalog = new Catalog("Fantasy #14");
-            session.beginTransaction();
-            session.save(catalog);
-            session.getTransaction().commit();
+//            session = factory.getCurrentSession();
+//            Catalog catalog = new Catalog("Fantasy #15");
+//            session.beginTransaction();
+//            session.save(catalog);
+//            session.getTransaction().commit();
 
 //            READ
 //            session = factory.getCurrentSession();
@@ -80,22 +86,30 @@ public class MainClass {
 //            session = factory.getCurrentSession();
 //            session.beginTransaction();
 //            Catalog catalog = session.get(Catalog.class, 1L);
-//            catalog.setTitle("Fantasy #8");
+            // session.detach(catalog); // отвязать от таблицы
+            // session.remove(catalog); // удалить из базы
+            // session.merge(catalog); // откат remove
+            // session.persist(); // добавить объект
+//            catalog.setTitle("Fantasy #10");
 //            session.getTransaction().commit();
 //            System.out.println(catalog);
 
 //            session = factory.getCurrentSession();
 //            session.beginTransaction();
 //            Book bookJava1 = session.get(Book.class, 4);
-//            session.delete(bookJava1);
+//            session.delete(bookJava1); // удаление
 //            session.getTransaction().commit();
+
+ // =============================================================
+            // Запросы в бд через Hibernate
 
 //            session = factory.getCurrentSession();
 //            session.beginTransaction();
+            // получить список
 //             List<Book> allBooks = session.createQuery("from Book").getResultList();
 ////             from Book b where b.title = 'Harry Potter' or b.authorName = 'Rowling'
 ////             from Book b where b.title LIKE 'Harry%'
-////             from Book b where b.title = :title
+////             from Book b where b.title = :title // :title - место подставки для setParameter
 //            List<Book> allBooks = session.createQuery("from Book b where b.title = :title").setParameter("title", "Java 1").getResultList();
 //            System.out.println(allBooks);
 //            session.getTransaction().commit();
