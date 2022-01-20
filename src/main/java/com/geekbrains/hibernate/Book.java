@@ -17,8 +17,8 @@ public class Book {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @JoinColumn(name = "author_id") // указываем а где же лежит ссылка на авора
+    private Author author; // а тут не инт или лонг а готовый объект!
 
     @ManyToMany
     @JoinTable(
