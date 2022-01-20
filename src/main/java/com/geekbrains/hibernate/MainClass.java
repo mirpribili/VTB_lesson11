@@ -20,8 +20,11 @@ local   all         postgres                          ident
  *  @OneToOne
  *  @ManyToOne  - см class Book (много книг может ссылаться на 1 автора\писателя)
  *      как книга узнает кто ее написал?
+         для этого в таблице books есть author_id
  *  @OneToMany
- *  @ManyToMany
+ *  @ManyToMany(fetch = FetchType.EAGER) // полные данные извлекаются
+ *  @ManyToMany(fetch = FetchType.LAZY) // поверхностное считывание 
+ Связи нужны что бы из книги узнать все о отзывах , авторе и тд
  */
 
 public class MainClass {
@@ -48,9 +51,9 @@ public class MainClass {
             /*
             session = factory.getCurrentSession();
             session.beginTransaction();
-            Reader reader = session.get(Reader.class, 1);
-            Book book = session.get(Book.class, 2);
-//            reader.getBooks().add(book);
+            Reader reader = session.get(Reader.class, 1); // дость из базы читатель
+            Book book = session.get(Book.class, 2); // достать из базы книгу
+//            reader.getBooks().add(book); // добавить в список прочитанных книг книгу
             reader.getBooks().clear();
             session.getTransaction().commit();
             //*/
