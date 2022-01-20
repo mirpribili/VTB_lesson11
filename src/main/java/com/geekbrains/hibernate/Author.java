@@ -16,10 +16,12 @@ public class Author {
     @Column(name = "name")
     private String name;
 
+// _ для двунаправленнной связи
     @OneToMany(mappedBy = "author")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL) // ALL - любая операция с автором спроецируется на книги  / DELETE - если автор удаляется то по цепочке удаляются все связанные с ним строки в БД
     private List<Book> books;
-
+// ^ для двунаправленнной связи
+    
     public int getId() {
         return id;
     }
