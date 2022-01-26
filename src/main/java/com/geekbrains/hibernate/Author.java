@@ -16,7 +16,7 @@ public class Author {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "author") // вот ссылка в книгах на нас(текущ сущность)
+    @OneToMany(mappedBy = "author")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Book> books;
 

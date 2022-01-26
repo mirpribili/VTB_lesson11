@@ -15,9 +15,9 @@ public class Book {
 
     @Column(name = "title")
     private String title;
- // 1е слово относится к текущей сущности
+
     @ManyToOne
-    @JoinColumn(name = "author_id") // как найти автора этой книги
+    @JoinColumn(name = "author_id")
     private Author author;
 
     @ManyToMany
