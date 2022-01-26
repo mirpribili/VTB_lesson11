@@ -22,6 +22,7 @@ local   all         postgres                          ident
  *      как книга узнает кто ее написал?
  *  @OneToMany
  *  @ManyToMany
+ * TODO: 01:15:11 валидатор hibernate
  */
 
 public class MainClass {
